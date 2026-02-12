@@ -28,7 +28,6 @@ const PhotoItem: React.FC<{ image: GalleryImage }> = ({ image }) => {
       <motion.div
         animate={controls}
         initial={{ rotate: image.rotation }} // Initial random Z tilt
-        whileHover={{ scale: 1.05, zIndex: 10 }}
         className="origin-top" 
         style={{ transformStyle: "preserve-3d" }}
       >
