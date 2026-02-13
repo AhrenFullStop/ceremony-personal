@@ -45,19 +45,23 @@ export const TIMELINE: TimelineEvent[] = [
   }
 ];
 
-export const VILLA_IMAGES = [
-  "https://picsum.photos/800/600?random=1",
-  "https://picsum.photos/800/600?random=2",
-  "https://picsum.photos/800/600?random=3",
-  "https://picsum.photos/800/600?random=4",
-  "https://picsum.photos/800/600?random=5",
-  "https://picsum.photos/800/600?random=6",
-];
+// Dynamically import specific villa images
+const villaAssetsImport = import.meta.glob('./assets/villa/*', { eager: true, query: '?url', import: 'default' });
 
-// Placeholder images for the footer gallery
-export const FOOTER_IMAGES: GalleryImage[] = Array.from({ length: 12 }).map((_, i) => ({
-  id: `img-${i}`,
-  src: `https://picsum.photos/300/400?random=${10 + i}`,
-  alt: `Wedding Memory ${i + 1}`,
-  rotation: Math.random() * 6 - 3 // Random slight rotation between -3 and 3 degrees
-}));
+export const VILLA_IMAGES = Object.values(villaAssetsImport) as string[];
+
+// Dynamically import all assets from the assets folder
+const assetsImport = import.meta.glob('./assets/*', { eager: true, query: '?url', import: 'default' });
+
+export const FOOTER_IMAGES: GalleryImage[] = Object.entries(assetsImport)
+  .filter(([path]) => !path.includes('villa'))
+  .map(([path, url], i) => {
+    const isVideo = path.toLowerCase().endsWith('.mp4');
+    return {
+      id: `asset-${i}`,
+      src: url as string,
+      alt: `Gallery Asset ${i + 1}`,
+      rotation: Math.random() * 6 - 3, // Random slight rotation between -3 and 3 degrees
+      type: isVideo ? 'video' : 'image'
+    };
+  });

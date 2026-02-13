@@ -10,4 +10,5 @@ export interface GalleryImage {
   src: string;
   alt: string;
   rotation?: number;
+  type?: 'image' | 'video';
 }

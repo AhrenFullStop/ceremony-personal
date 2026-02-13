@@ -3,7 +3,8 @@ import Hero from './components/Hero';
 import EventDetails from './components/EventDetails';
 import MapSection from './components/MapSection';
 import RsvpGame from './components/RsvpGame';
-import FooterGallery from './components/FooterGallery';
+import PhotoGallery from './components/PhotoGallery';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -20,12 +21,13 @@ function App() {
       </div>
 
       <Hero />
+      <PhotoGallery />
       
       <div className="relative z-10">
         <EventDetails />
         <MapSection />
         <RsvpGame />
-        <FooterGallery />
+        <Footer />
       </div>
 
     </main>
