@@ -163,12 +163,6 @@ const RsvpGame: React.FC = () => {
                </a>
              </GlassCard>
              
-             <button 
-               onClick={resetGame}
-               className="block mx-auto mt-4 text-sm text-gray-500 hover:text-gray-800 underline"
-             >
-               Reset choice
-             </button>
           </motion.div>
         )}
       </div>
