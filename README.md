@@ -25,4 +25,4 @@ To run the project locally:
    npm run dev
    ```
 
-Visit `http://localhost:5173` to preview.
+Visit `http://localhost:3000` to preview.
