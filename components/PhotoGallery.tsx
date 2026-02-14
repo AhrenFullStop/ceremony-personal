@@ -48,7 +48,7 @@ const PhotoItem: React.FC<{ image: GalleryImage }> = ({ image }) => {
                 className="w-full h-full object-cover"
                 muted
                 loop
-                autoPlay
+                preload="none" onMouseEnter={(e) => e.currentTarget.play()} onMouseLeave={(e) => e.currentTarget.pause()}
                 playsInline
               />
             ) : (

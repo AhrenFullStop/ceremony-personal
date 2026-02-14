@@ -56,7 +56,7 @@ const MapSection: React.FC = () => {
                   className="shrink-0 w-64 h-48 overflow-hidden rounded-xl shadow-md cursor-zoom-in"
                   onClick={() => setSelectedImageIndex(idx % VILLA_IMAGES.length)}
                 >
-                  <img src={img} alt="Villa View" className="w-full h-full object-cover pointer-events-none" />
+                  <img src={img} alt="Villa View" className="w-full h-full object-cover pointer-events-none" loading="lazy" />
                 </div>
               ))}
             </motion.div>
