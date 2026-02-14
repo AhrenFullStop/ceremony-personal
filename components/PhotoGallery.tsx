@@ -5,6 +5,7 @@ import { GalleryImage } from '../types';
 
 const PhotoItem: React.FC<{ image: GalleryImage }> = ({ image }) => {
   const controls = useAnimation();
+  const videoRef = React.useRef<HTMLVideoElement>(null);
 
   const handleTap = () => {
     // Physical swing animation on the X-axis
@@ -14,6 +15,42 @@ const PhotoItem: React.FC<{ image: GalleryImage }> = ({ image }) => {
       transition: { duration: 2.5, ease: "linear" }
     });
   };
+
+  // Intersection Observer for smart video playback
+  React.useEffect(() => {
+    if (image.type !== 'video' || !videoRef.current) return;
+
+    const video = videoRef.current;
+
+    // Intersection Observer to play/pause based on visibility
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Video is visible, play it
+            video.play().catch(() => {
+              // Autoplay might be blocked, silently fail
+            });
+          } else {
+            // Video is not visible, pause to save resources
+            video.pause();
+          }
+        });
+      },
+      {
+        // Start playing when 20% of the video is visible
+        threshold: 0.2,
+        // Add some margin to start loading slightly before visible
+        rootMargin: '50px'
+      }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [image.type]);
 
   return (
     <div 
@@ -44,11 +81,13 @@ const PhotoItem: React.FC<{ image: GalleryImage }> = ({ image }) => {
            <div className="aspect-[3/4] overflow-hidden bg-gray-200">
             {image.type === 'video' ? (
               <video
+                ref={videoRef}
                 src={image.src}
                 className="w-full h-full object-cover"
                 muted
                 loop
-                preload="none" onMouseEnter={(e) => e.currentTarget.play()} onMouseLeave={(e) => e.currentTarget.pause()}
+                autoPlay
+                preload="metadata"
                 playsInline
               />
             ) : (
@@ -77,7 +116,7 @@ const PhotoGallery: React.FC = () => {
   const ROW2_WIDTH = row2.length * ITEM_WIDTH;
 
   // Duration: ~8s per item for a slow scroll
-  const DURATION_PER_ITEM = 6;
+  const DURATION_PER_ITEM = 8;
 
   return (
     <section className="relative py-24 overflow-hidden bg-brand-dark/5">
