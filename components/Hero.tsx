@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
       {/* Background Media - Parallax Effect */}
       <motion.div style={{ y }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
         <img 
-          src="https://picsum.photos/1920/1080?random=99" 
+          src="/hero.webp" 
           alt="Ahren and Reem" 
           className="w-full h-full object-cover"
         />

@@ -45,23 +45,33 @@ export const TIMELINE: TimelineEvent[] = [
   }
 ];
 
-// Dynamically import specific villa images
-const villaAssetsImport = import.meta.glob('./assets/villa/*', { eager: true, query: '?url', import: 'default' });
+// Villa images from public folder
+const villaImageFiles = [
+  '1.avif', '2.avif', '3.avif', '4.avif', '5.avif', '6.avif', '7.avif', '8.avif',
+  '9.avif', '10.avif', '11.avif'
+];
 
-export const VILLA_IMAGES = Object.values(villaAssetsImport) as string[];
+export const VILLA_IMAGES = villaImageFiles.map(file => `/assets/villa/${file}`);
 
-// Dynamically import all assets from the assets folder
-const assetsImport = import.meta.glob('./assets/*', { eager: true, query: '?url', import: 'default' });
+// All gallery assets from public folder
+const galleryAssets = [
+  '1.webp', '2.webp', '3.webp', '4.webp', '5.mp4', '6.webp', '7.webp', '8.webp',
+  '9.mp4', '10.mp4', '11.webp', '12.mp4', '13.webp', '14.webp', '15.webp', '16.webp',
+  '17.mp4', '18.webp', '19.webp', '20.webp', '21.webp', '22.webp', '23.webp', '24.webp',
+  '25.webp', '26.webp', '27.webp', '28.webp', '29.webp', '31.webp', '32.webp', '33.webp',
+  '34.webp', '35.webp', '36.webp', '37.mp4', '38.webp', '40.mp4', '41.webp', '43.webp',
+  '44.webp', '45.webp', '46.webp', '47.webp', '48.webp', '50.webp', '51.webp', '52.webp',
+  '53.webp', '54.webp', '56.webp', '57.webp', '58.webp', '59.webp', '60.webp', '61.webp',
+  '62.webp', '63.webp', '64.webp', '66.webp', '67.webp', '68.webp', '70.webp', '71.webp', '72.webp'
+];
 
-export const FOOTER_IMAGES: GalleryImage[] = Object.entries(assetsImport)
-  .filter(([path]) => !path.includes('villa'))
-  .map(([path, url], i) => {
-    const isVideo = path.toLowerCase().endsWith('.mp4');
-    return {
-      id: `asset-${i}`,
-      src: url as string,
-      alt: `Gallery Asset ${i + 1}`,
-      rotation: Math.random() * 6 - 3, // Random slight rotation between -3 and 3 degrees
-      type: isVideo ? 'video' : 'image'
-    };
-  });
+export const FOOTER_IMAGES: GalleryImage[] = galleryAssets.map((file, i) => {
+  const isVideo = file.toLowerCase().endsWith('.mp4');
+  return {
+    id: `asset-${i}`,
+    src: `/assets/${file}`,
+    alt: `Gallery Asset ${i + 1}`,
+    rotation: Math.random() * 6 - 3, // Random slight rotation between -3 and 3 degrees
+    type: isVideo ? 'video' : 'image'
+  };
+});
