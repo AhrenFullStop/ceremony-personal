@@ -69,7 +69,7 @@ const RsvpGame: React.FC = () => {
   };
 
   const generateWhatsAppLink = () => {
-    const phone = "1234567890"; // Placeholder phone number
+    const phone = "+27736772064"; // Placeholder phone number
     let text = "";
     if (status === 'dropped-yes') {
       text = "I'm RSVPing YES to the wedding! Dietary notes: [optional] - bringing the kids [yes/no]";
@@ -99,7 +99,7 @@ const RsvpGame: React.FC = () => {
               ${status === 'dropped-yes' ? 'bg-green-200 border-green-500 scale-105 shadow-[0_0_20px_rgba(74,222,128,0.5)]' : ''}
             `}
           >
-             <span className="text-3xl md:text-4xl">🏰</span>
+            <span className="text-3xl md:text-4xl">💃🕺</span>
              <span className="font-bold text-xs md:text-sm mt-2 text-green-800">GOING</span>
           </div>
 
@@ -119,8 +119,8 @@ const RsvpGame: React.FC = () => {
           >
             {status === 'dropped-yes' ? '🥳' : 
              status === 'dropped-no' ? '👋' : 
-             hoverZone === 'yes' ? '😮' : 
-             hoverZone === 'no' ? '😢' : '🤠'}
+                hoverZone === 'yes' ? '😎' :
+                  hoverZone === 'no' ? '🥺' : '😶'}
           </motion.div>
 
           {/* NO Zone (Right) */}

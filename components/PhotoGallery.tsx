@@ -77,7 +77,7 @@ const PhotoGallery: React.FC = () => {
   const ROW2_WIDTH = row2.length * ITEM_WIDTH;
 
   // Duration: ~8s per item for a slow scroll
-  const DURATION_PER_ITEM = 8;
+  const DURATION_PER_ITEM = 6;
 
   return (
     <section className="relative py-24 overflow-hidden bg-brand-dark/5">
