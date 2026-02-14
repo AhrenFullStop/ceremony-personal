@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Hero from './components/Hero';
-import EventDetails from './components/EventDetails';
-import MapSection from './components/MapSection';
-import RsvpGame from './components/RsvpGame';
-import PhotoGallery from './components/PhotoGallery';
-import Footer from './components/Footer';
+
+// Lazy load below-the-fold components
+const EventDetails = React.lazy(() => import('./components/EventDetails'));
+const MapSection = React.lazy(() => import('./components/MapSection'));
+const RsvpGame = React.lazy(() => import('./components/RsvpGame'));
+const PhotoGallery = React.lazy(() => import('./components/PhotoGallery'));
+const Footer = React.lazy(() => import('./components/Footer'));
 
 function App() {
   return (
@@ -21,13 +23,27 @@ function App() {
       </div>
 
       <Hero />
-      <PhotoGallery />
+
+      <Suspense fallback={<div className="h-96 w-full flex items-center justify-center">Loading gallery...</div>}>
+        <PhotoGallery />
+      </Suspense>
       
       <div className="relative z-10">
-        <EventDetails />
-        <MapSection />
-        <RsvpGame />
-        <Footer />
+        <Suspense fallback={<div className="h-96 w-full flex items-center justify-center">Loading details...</div>}>
+          <EventDetails />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96 w-full flex items-center justify-center">Loading map...</div>}>
+          <MapSection />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96 w-full flex items-center justify-center">Loading RSVP...</div>}>
+          <RsvpGame />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-24 w-full flex items-center justify-center">Loading footer...</div>}>
+          <Footer />
+        </Suspense>
       </div>
 
     </main>
