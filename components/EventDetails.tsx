@@ -26,7 +26,7 @@ const EventDetails: React.FC = () => {
               <span className="font-semibold">Weather Forecast</span>
             </div>
             <p className="italic text-sm">
-              “Expected warm (≈27°C), but Cape Town can surprise us — bring a light layer.”
+              “Expected warm (≈25°C), but Cape Town can surprise us — bring a light layer.”
             </p>
           </div>
         </div>
