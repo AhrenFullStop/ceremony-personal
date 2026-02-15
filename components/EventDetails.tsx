@@ -1,32 +1,39 @@
 import React from 'react';
 import { TIMELINE, LOCATION_NAME, LOCATION_LINK } from '../constants';
 import GlassCard from './GlassCard';
-import { Sun, MapPin, Clock } from 'lucide-react';
+import { Sun, MapPin, Clock, Shirt } from 'lucide-react';
 
 const EventDetails: React.FC = () => {
   return (
     <section className="relative py-20 px-4 max-w-4xl mx-auto space-y-16">
       
       {/* Intro / Location Note */}
-      <GlassCard className="p-8 text-center max-w-2xl mx-auto">
+      <GlassCard className="p-8 max-w-2xl mx-auto">
         <h2 className="font-serif text-4xl mb-6 text-gray-800">The Celebration</h2>
         <div className="space-y-4 font-sans text-gray-700">
           <a 
             href={LOCATION_LINK}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center justify-center gap-2 text-lg font-medium hover:text-brand-gold transition-colors"
+            className="flex items-center gap-2 text-lg font-medium hover:text-brand-gold transition-colors"
           >
             <MapPin className="w-5 h-5 text-brand-gold" />
             <span className="underline underline-offset-4 decoration-brand-gold/30">{LOCATION_NAME}</span>
           </a>
-          <div className="flex flex-col items-center gap-2 p-4 bg-white/30 rounded-lg">
+          <div className="flex flex-col gap-2 p-4 bg-white/30 rounded-lg">
             <div className="flex items-center gap-2 text-brand-dark/80">
               <Sun className="w-5 h-5" />
               <span className="font-semibold">Weather Forecast</span>
             </div>
             <p className="italic text-sm">
               “Expected warm (≈25°C), but Cape Town can surprise us — bring a light layer.”
+            </p>
+            <div className="flex items-center gap-2 text-brand-dark/80 mt-4">
+              <Shirt className="w-5 h-5" />
+              <span className="font-semibold">Dress Code</span>
+            </div>
+            <p className="italic text-sm">
+              “Cosy Formal -- Only the bride in white ”
             </p>
           </div>
         </div>
